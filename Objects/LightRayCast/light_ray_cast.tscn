@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5pstxysfhuwf"]
+
+[ext_resource type="Script" path="res://Objects/LightRayCast/light_ray_cast.gd" id="1_m107v"]
+[ext_resource type="Script" path="res://Objects/LightRayCast/ray_cast_2da.gd" id="2_a4w0c"]
+[ext_resource type="Script" path="res://Objects/LightRayCast/ray_cast_2db.gd" id="3_y00vf"]
+[ext_resource type="Script" path="res://Objects/LightRayCast/area_2d.gd" id="4_cqykb"]
+
+[node name="LightRayCast" type="RayCast2D"]
+target_position = Vector2(0, 1000)
+collision_mask = 2
+script = ExtResource("1_m107v")
+
+[node name="RayCast2DA" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 1000)
+collision_mask = 2
+script = ExtResource("2_a4w0c")
+
+[node name="RayCast2DB" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 1000)
+collision_mask = 2
+script = ExtResource("3_y00vf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_cqykb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+color = Color(0, 1, 1, 0.196078)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

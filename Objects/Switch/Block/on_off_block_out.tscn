@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4j2f7ni1kwyk"]
+
+[ext_resource type="PackedScene" uid="uid://bf3ac3bnnsmf5" path="res://Objects/Switch/Block/on_off_block.tscn" id="1_f5c4t"]
+
+[node name="OnOffBlockOut" type="Node2D"]
+
+[node name="OnOffBlock" parent="." instance=ExtResource("1_f5c4t")]
+Start_State = 1

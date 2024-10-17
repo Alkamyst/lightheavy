@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dao3s8l6a4yme"]
+
+[ext_resource type="Script" path="res://Objects/Switch/switch.gd" id="1_e76lw"]
+[ext_resource type="Texture2D" uid="uid://6igj6m2mt2v8" path="res://Sprites/Switch/Switch.png" id="2_rwy88"]
+[ext_resource type="AudioStream" uid="uid://dsqyilk2icsi7" path="res://Sound/press2.mp3" id="3_bajjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmpx3"]
+size = Vector2(12, 6)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7j3oj"]
+b = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dabiu"]
+size = Vector2(24, 12)
+
+[node name="Switch" type="StaticBody2D" groups=["switch"]]
+scale = Vector2(2, 2)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_e76lw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3)
+texture = ExtResource("2_rwy88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_vmpx3")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(5, -5)
+shape = SubResource("SegmentShape2D_7j3oj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -5)
+scale = Vector2(-1, 1)
+shape = SubResource("SegmentShape2D_7j3oj")
+
+[node name="WeightDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeightDetection"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_dabiu")
+debug_color = Color(0.989621, 0, 0.288268, 0.42)
+
+[node name="PressSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bajjh")
+
+[node name="SnapPoint" type="Node2D" parent="."]
+position = Vector2(0, -12.5)
+
+[connection signal="body_entered" from="WeightDetection" to="." method="_on_weight_detection_body_entered"]
+[connection signal="body_exited" from="WeightDetection" to="." method="_on_weight_detection_body_exited"]

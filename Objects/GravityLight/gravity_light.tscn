@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsux7vyo645cr"]
+
+[sub_resource type="Gradient" id="Gradient_t12af"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8j70l"]
+gradient = SubResource("Gradient_t12af")
+height = 128
+fill_from = Vector2(1, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w7mtw"]
+cull_mode = 1
+polygon = PackedVector2Array(-32, 32, -32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="GravityLight" type="Node2D"]
+scale = Vector2(1.51712, 0.881127)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.659143, -1.13491)
+rotation = 3.14159
+color = Color(1, 0.0431373, 0, 1)
+energy = 16.0
+blend_mode = 1
+shadow_enabled = true
+shadow_color = Color(1, 0.0431373, 0, 0)
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_8j70l")
+offset = Vector2(0, -320)
+texture_scale = 5.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+position = Vector2(2.63657, 5.67455)
+color = Color(0, 0, 1, 1)
+blend_mode = 1
+shadow_enabled = true
+max_distance = 10.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+scale = Vector2(3.7684, 10.4425)
+occluder = SubResource("OccluderPolygon2D_w7mtw")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)

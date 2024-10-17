@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgr6vpop46inl"]
+
+[ext_resource type="Texture2D" uid="uid://ctcqptwemc6aq" path="res://Sprites/LightGrey.png" id="1_8uf41"]
+[ext_resource type="Script" path="res://Title Screen/title_screen.gd" id="1_747ny"]
+[ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="2_v8b7d"]
+[ext_resource type="Texture2D" uid="uid://b33r1pckecylp" path="res://Sprites/Title Screen/Title Screen.png" id="3_q775p"]
+[ext_resource type="Texture2D" uid="uid://dc8mqm6gjbkvt" path="res://Sprites/White.png" id="4_gqm1v"]
+[ext_resource type="Texture2D" uid="uid://bgqnxatb7kqjo" path="res://Sprites/Black.png" id="5_vr6dd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4hoq"]
+atlas = ExtResource("3_q775p")
+region = Rect2(0, 0, 200, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfjix"]
+atlas = ExtResource("3_q775p")
+region = Rect2(200, 0, 200, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yis1v"]
+atlas = ExtResource("3_q775p")
+region = Rect2(400, 0, 200, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqfjf"]
+atlas = ExtResource("3_q775p")
+region = Rect2(600, 0, 200, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkpt5"]
+animations = [{
+"frames": [{
+"duration": 50.0,
+"texture": SubResource("AtlasTexture_r4hoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfjix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yis1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqfjf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_747ny")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(487, -138)
+scale = Vector2(3000, 3000)
+texture = ExtResource("1_8uf41")
+metadata/_edit_lock_ = true
+
+[node name="BasicTileMapLayer" parent="." instance=ExtResource("2_v8b7d")]
+
+[node name="Title" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 198)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_bkpt5")
+autoplay = "default"
+frame_progress = 0.33283
+
+[node name="White" type="Sprite2D" parent="."]
+position = Vector2(593, 339)
+scale = Vector2(1462.5, 816.75)
+texture = ExtResource("4_gqm1v")
+
+[node name="Black" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(593, 339)
+scale = Vector2(1462.5, 816.75)
+texture = ExtResource("5_vr6dd")

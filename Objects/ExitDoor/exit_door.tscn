@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb8grdfguq4rp"]
+
+[ext_resource type="Texture2D" uid="uid://bbe8c75ydprhp" path="res://Sprites/ExitDoor/ExitDoor.png" id="1_utc40"]
+[ext_resource type="Script" path="res://Objects/ExitDoor/exit_door.gd" id="1_y6a1a"]
+[ext_resource type="Texture2D" uid="uid://b5wsy3hnlfva" path="res://Sprites/ExitDoor/Sign.png" id="2_wvni8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lq2cu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_utc40")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eotj6"]
+size = Vector2(44, 54)
+
+[node name="ExitDoor" type="Area2D" groups=["goal"]]
+script = ExtResource("1_y6a1a")
+file_path = "res://level.tscn"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lq2cu")
+animation = &"Open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_eotj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -53)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wvni8")

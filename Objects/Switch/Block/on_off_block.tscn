@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf3ac3bnnsmf5"]
+
+[ext_resource type="Texture2D" uid="uid://dpmpbq1ondyol" path="res://Sprites/Switch/Block/BlockIn.png" id="1_dfwnd"]
+[ext_resource type="Script" path="res://Objects/Switch/Block/on_off_block.gd" id="1_yu07a"]
+[ext_resource type="Texture2D" uid="uid://cv4bf48wucj5e" path="res://Sprites/Switch/Block/BlockOut.png" id="2_hafpx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_10lcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dfwnd")
+}],
+"loop": true,
+"name": &"In",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hafpx")
+}],
+"loop": true,
+"name": &"Out",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rv0u"]
+size = Vector2(24, 24)
+
+[node name="OnOffBlock" type="StaticBody2D"]
+script = ExtResource("1_yu07a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_10lcb")
+animation = &"In"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8rv0u")

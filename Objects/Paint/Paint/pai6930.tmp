@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://chyl7kjbjfpmb"]
+
+[ext_resource type="Texture2D" uid="uid://sxwcpkpt0so0" path="res://Sprites/Paint/Paint.png" id="1_docof"]
+[ext_resource type="Shader" path="res://Objects/Paint/Paint/paint.gdshader" id="1_o4wx4"]
+[ext_resource type="Script" path="res://Objects/Paint/Paint/paint.gd" id="1_rckpa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kim51"]
+shader = ExtResource("1_o4wx4")
+shader_parameter/color = Color(0, 0, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0ljy"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ti4pm"]
+radius = 22.0
+
+[node name="Paint" type="Node2D"]
+script = ExtResource("1_rckpa")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_kim51")
+texture = ExtResource("1_docof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_g0ljy")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+shape = SubResource("CircleShape2D_ti4pm")
+debug_color = Color(0.989928, 0, 0.284584, 0.42)
+
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]

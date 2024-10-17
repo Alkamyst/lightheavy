@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv2r8d030wlj2"]
+
+[ext_resource type="Shader" path="res://Objects/Transition/Transition.gdshader" id="1_2m2ln"]
+[ext_resource type="Texture2D" uid="uid://bb7wibotdfowj" path="res://Sprites/Transition/Transition.png" id="1_e2thk"]
+[ext_resource type="Script" path="res://Objects/Transition/transition.gd" id="3_npx11"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w668c"]
+shader = ExtResource("1_2m2ln")
+
+[node name="Transition" type="Sprite2D"]
+top_level = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_w668c")
+texture = ExtResource("1_e2thk")
+centered = false
+flip_h = true
+script = ExtResource("3_npx11")
