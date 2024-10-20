@@ -13,6 +13,14 @@ var gravity
 @onready var CollisionPickedUp = $CollisionShapePickedUp
 var picked_up: bool = false
 @onready var PaintSound: AudioStreamPlayer2D = $PaintSound
+@onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
+
+func play_default():
+	AnimPlayer.play("default")
+	
+func play_shake():
+	AnimPlayer.stop()
+	AnimPlayer.play("shake")
 
 func _ready() -> void:
 	if init_gravity == 0:

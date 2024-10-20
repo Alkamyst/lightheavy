@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0pputdh413d2"]
+[gd_scene load_steps=31 format=3 uid="uid://c0pputdh413d2"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_cnmc8"]
 [ext_resource type="Texture2D" uid="uid://4teicuy80m5s" path="res://Sprites/Player/idle.png" id="2_gem2p"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://052xtu8fvi1r" path="res://Sound/jump.mp3" id="11_ti8p4"]
 [ext_resource type="AudioStream" uid="uid://cxjbce425dbwd" path="res://Sound/press.mp3" id="12_vlu1d"]
 [ext_resource type="AudioStream" uid="uid://ccytgggat7152" path="res://Sound/footsteps.mp3" id="13_ck4rg"]
+[ext_resource type="PackedScene" uid="uid://boegmqyjwpwfp" path="res://Objects/Gun/gun.tscn" id="14_svw7v"]
+[ext_resource type="AudioStream" uid="uid://dcyrlcufywj8p" path="res://Sound/select.mp3" id="15_bucff"]
+[ext_resource type="AudioStream" uid="uid://jrx3gktau4hb" path="res://Sound/nuhuh.mp3" id="16_qom6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s04a"]
 size = Vector2(40, 46)
@@ -140,7 +143,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8rvd"]
-size = Vector2(63, 48)
+size = Vector2(47.5, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhjus"]
 size = Vector2(46, 46)
@@ -176,6 +179,7 @@ autoplay = "Idle"
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(7.75, 0)
 shape = SubResource("RectangleShape2D_s8rvd")
 debug_color = Color(0.967356, 1.63645e-06, 0.474771, 0.42)
 
@@ -202,6 +206,9 @@ texture_repeat = 1
 position = Vector2(1069, 629)
 texture = ExtResource("9_xvydc")
 
+[node name="Gun" parent="." instance=ExtResource("14_svw7v")]
+visible = false
+
 [node name="PaintSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_o8c35")
 
@@ -213,5 +220,11 @@ stream = ExtResource("12_vlu1d")
 
 [node name="WinSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_ck4rg")
+
+[node name="PickupGunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_bucff")
+
+[node name="NuhuhSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_qom6g")
 
 [connection signal="area_entered" from="GoalDetection" to="." method="_on_goal_detection_area_entered"]

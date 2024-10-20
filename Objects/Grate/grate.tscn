@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b51rbw74anvwp"]
+
+[ext_resource type="Texture2D" uid="uid://bho6f5qyap71o" path="res://Sprites/Grate/Grate.png" id="1_f56y0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqn5a"]
+size = Vector2(24, 24)
+
+[node name="Grate" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f56y0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mqn5a")

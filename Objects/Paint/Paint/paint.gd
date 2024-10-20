@@ -2,9 +2,14 @@ extends Node2D
 
 const LAUNCH_SPEED = 21000
 @onready var RigidBody: RigidBody2D = $RigidBody2D
-@onready var Parent = get_parent()
 @onready var Sprite: Sprite2D = $RigidBody2D/Sprite2D
 @onready var Col: Area2D = $RigidBody2D/Area2D
+
+var start_rotation = 0
+var col_rotation = 0
+var parent_rotation = 0
+
+var enable_col_on_start: bool = false
 
 var affect_carrying = 0
 
@@ -14,18 +19,21 @@ var type: String = "Light"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Applies initial launch speed from dropper
-	if Parent != null:
-		var direction = Vector2.DOWN.rotated(Parent.rotation)
-		RigidBody.apply_central_force(direction * LAUNCH_SPEED)
+	var direction = Vector2.DOWN.rotated(start_rotation)
+	RigidBody.apply_central_force(direction * LAUNCH_SPEED)
+	Col.rotation = col_rotation
 		
 	Sprite.material.set_shader_parameter("color", Color(color_string))
+	
+	if enable_col_on_start:
+		enable_collision()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Rotates Sprite to where the paint is going
-	if Parent != null:
-		Sprite.rotation = RigidBody.linear_velocity.angle() - Parent.rotation 
-		Sprite.rotation_degrees += 270
+	
+	Sprite.rotation = RigidBody.linear_velocity.angle() - parent_rotation
+	Sprite.rotation_degrees += 270
 	
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
@@ -63,5 +71,8 @@ func spawn_particle():
 
 func _on_timer_timeout() -> void:
 	# Enable collision after leaving dropper
+	enable_collision()
+	
+func enable_collision():
 	Col.monitorable = true
 	Col.monitoring = true

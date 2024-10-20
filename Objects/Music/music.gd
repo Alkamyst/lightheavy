@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 const level_music = preload("res://Music/Song.wav")
 
 func _play_music(music: AudioStream, volume = -6.0):
-	if stream == music:
+	if stream == music && playing:
 		return
 		
 	stream = music
@@ -12,4 +12,7 @@ func _play_music(music: AudioStream, volume = -6.0):
 	
 func play_music_level():
 	_play_music(level_music)
+
+func stop_music():
+	stop()
 	

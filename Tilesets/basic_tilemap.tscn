@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://b5hi272oc21y6"]
+[gd_scene load_steps=14 format=4 uid="uid://b5hi272oc21y6"]
 
 [ext_resource type="Texture2D" uid="uid://01r3sajuwpno" path="res://Tilesets/autotile_tileset.png" id="1_qgmkt"]
 [ext_resource type="Texture2D" uid="uid://bbiq7x1vbuue8" path="res://Tilesets/shadow_tileset.png" id="2_3i88k"]
 [ext_resource type="Texture2D" uid="uid://cr4nfmlnexqq4" path="res://Sprites/Keys/Keys.png" id="2_cftg8"]
 [ext_resource type="PackedScene" uid="uid://bdn2ssbvr5jhe" path="res://Objects/Switch/Block/on_off_block_in.tscn" id="4_u0kv7"]
 [ext_resource type="PackedScene" uid="uid://c4j2f7ni1kwyk" path="res://Objects/Switch/Block/on_off_block_out.tscn" id="5_n1scd"]
+[ext_resource type="PackedScene" uid="uid://b51rbw74anvwp" path="res://Objects/Grate/grate.tscn" id="6_mqoq4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8n401"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -459,6 +460,10 @@ resource_name = "OnOffBlocks"
 scenes/3/scene = ExtResource("4_u0kv7")
 scenes/4/scene = ExtResource("5_n1scd")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_y3hgl"]
+resource_name = "Grate"
+scenes/1/scene = ExtResource("6_mqoq4")
+
 [sub_resource type="TileSet" id="TileSet_mdk6i"]
 tile_size = Vector2i(24, 24)
 occlusion_layer_0/light_mask = 1
@@ -470,6 +475,7 @@ sources/0 = SubResource("TileSetAtlasSource_ighc4")
 sources/2 = SubResource("TileSetAtlasSource_5keia")
 sources/4 = SubResource("TileSetScenesCollectionSource_c12f3")
 sources/1 = SubResource("TileSetAtlasSource_qe1xi")
+sources/5 = SubResource("TileSetScenesCollectionSource_y3hgl")
 
 [node name="BasicTileMapLayer" type="TileMapLayer"]
 texture_filter = 1

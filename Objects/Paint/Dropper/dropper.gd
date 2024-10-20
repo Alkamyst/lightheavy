@@ -29,6 +29,8 @@ func _on_timer_timeout() -> void:
 	const PAINT = preload("res://Objects/Paint/Paint/paint.tscn")
 	var new_paint = PAINT.instantiate()
 	new_paint.affect_carrying = Affect_Carrying
+	new_paint.start_rotation = rotation
+	new_paint.parent_rotation = rotation
 	if Type == 1:
 		new_paint.color_string = blue
 		new_paint.type = 'Light'

@@ -6,16 +6,23 @@ const SPEED = MAXSPEED/15
 const FALLING_SPEED = MAXSPEED/15
 const JUMP_VELOCITY = -500.0
 var gravity = Globals.gravity_medium
+var gravity_state = 0
 @onready var Sprite: AnimatedSprite2D = $Sprite2D
 @onready var HeadSprite: AnimatedSprite2D = $HeadSprite
 @onready var PickupArea = $PickupArea
 @onready var Walldetection = $WallDetection
 var carrying: bool = false
 
+@onready var Gun = $Gun
+
 @onready var PaintSound: AudioStreamPlayer2D = $PaintSound
 @onready var JumpSound: AudioStreamPlayer2D = $JumpSound
 @onready var PickupSound: AudioStreamPlayer2D = $PickupSound
 @onready var WinSound: AudioStreamPlayer2D = $WinSound
+@onready var PickupGunSound: AudioStreamPlayer2D = $PickupGunSound
+@onready var NuhuhSound: AudioStreamPlayer2D = $NuhuhSound
+
+@export_enum("No", "Yes") var Has_Gun: int
 
 var jump_time = 0
 
@@ -39,17 +46,25 @@ func play_move_hold():
 	
 func _ready() -> void:
 	Music.play_music_level()
+	if Has_Gun:
+		$Gun.visible = true
 
 func _physics_process(delta: float) -> void:
 	
 	if velocity.x < 0:
 		Sprite.flip_h = true
 		HeadSprite.flip_h = true
+		PickupArea.rotation_degrees = 180
 		Walldetection.rotation_degrees = 180
+		if Gun.get_scale() == Vector2(1, 1):
+			Gun.apply_scale(Vector2(-1, 1))
 	elif velocity.x > 0:
 		Sprite.flip_h = false
 		HeadSprite.flip_h = false
+		PickupArea.rotation_degrees = 0
 		Walldetection.rotation_degrees = 0
+		if Gun.get_scale() == Vector2(-1, 1):
+			Gun.apply_scale(Vector2(-1, 1))
 	
 	if jump_time > 0:
 		jump_time -= 1
@@ -91,11 +106,14 @@ func _physics_process(delta: float) -> void:
 			
 	if gravity == Globals.gravity_low:
 		HeadSprite.play("Blue")
+		gravity_state = 1
 	elif gravity == Globals.gravity_high:
 		HeadSprite.play("Red")
-		velocity.x *= .925
+		velocity.x *= .95
+		gravity_state = 2
 	else:
 		HeadSprite.play("Grey")
+		gravity_state = 0
 
 	move_and_slide()
 	
@@ -138,8 +156,16 @@ func pickup_behavior():
 					if "drop" in i:
 						i.drop(self, Sprite.flip_h)
 						carrying = false
+						if Has_Gun:
+							$Gun.visible = true
 						PickupSound.play()
 						return
+			else:
+				for i in children:
+					if i.is_in_group("box"):
+						i.play_shake()
+						NuhuhSound.play()
+					
 	
 	for i in pickupOverlap:
 		if i.is_in_group("pickup"):
@@ -147,8 +173,13 @@ func pickup_behavior():
 				if Input.is_action_just_pressed("pickup") and !carrying:
 					i.get_parent().pick_up(self)
 					carrying = true
+					if Has_Gun:
+						$Gun.visible = false
 					PickupSound.play()
 					return
+					
+	if Input.is_action_just_pressed("shoot") and Has_Gun and !carrying:
+		Gun.shoot(gravity_state)
 
 func play_animations():
 	if velocity.y != 0:

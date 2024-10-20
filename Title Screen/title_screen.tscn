@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dgr6vpop46inl"]
+[gd_scene load_steps=20 format=3 uid="uid://dgr6vpop46inl"]
 
 [ext_resource type="Script" path="res://Title Screen/title_screen.gd" id="1_747ny"]
 [ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="2_v8b7d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dc8mqm6gjbkvt" path="res://Sprites/White.png" id="4_gqm1v"]
 [ext_resource type="Texture2D" uid="uid://dns3ncjo7drkj" path="res://Sprites/Title Screen/TextBack.png" id="5_hmoxa"]
 [ext_resource type="Texture2D" uid="uid://dw8fnyj36ti11" path="res://Sprites/Title Screen/Start.png" id="6_xfx0l"]
+[ext_resource type="Texture2D" uid="uid://0xv0yywxepu1" path="res://Sprites/Title Screen/Credits.png" id="6_xyh0a"]
 [ext_resource type="Texture2D" uid="uid://b3pmfg57jh2s3" path="res://Sprites/Title Screen/Quit.png" id="7_76xnn"]
 [ext_resource type="Texture2D" uid="uid://lh6j2cms4igk" path="res://Sprites/Title Screen/Cursor.png" id="8_aw0c6"]
 [ext_resource type="AudioStream" uid="uid://c5rmxqmlc4mfu" path="res://Sound/click.mp3" id="10_5pvg1"]
@@ -91,7 +92,7 @@ x_position = -200
 [node name="BasicTileMapLayer" parent="." instance=ExtResource("2_v8b7d")]
 
 [node name="Title" type="AnimatedSprite2D" parent="."]
-position = Vector2(576, 198)
+position = Vector2(576, 169)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bkpt5")
 autoplay = "default"
@@ -101,15 +102,22 @@ frame_progress = 0.210759
 position = Vector2(576, 426)
 
 [node name="StartBack" type="Sprite2D" parent="Buttons"]
-position = Vector2(0, -52)
+position = Vector2(0, -90)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_hmoxa")
 
 [node name="Start" type="Sprite2D" parent="Buttons/StartBack"]
 texture = ExtResource("6_xfx0l")
 
+[node name="CreditsBack" type="Sprite2D" parent="Buttons"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_hmoxa")
+
+[node name="Credits" type="Sprite2D" parent="Buttons/CreditsBack"]
+texture = ExtResource("6_xyh0a")
+
 [node name="QuitBack" type="Sprite2D" parent="Buttons"]
-position = Vector2(0, 52)
+position = Vector2(0, 90)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_hmoxa")
 
@@ -129,7 +137,6 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Black" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(593, 339)
 scale = Vector2(1462.5, 816.75)
 texture = ExtResource("4_gqm1v")

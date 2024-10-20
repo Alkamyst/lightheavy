@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf3ac3bnnsmf5"]
+[gd_scene load_steps=7 format=3 uid="uid://bf3ac3bnnsmf5"]
 
 [ext_resource type="Texture2D" uid="uid://dpmpbq1ondyol" path="res://Sprites/Switch/Block/BlockIn.png" id="1_dfwnd"]
 [ext_resource type="Script" path="res://Objects/Switch/Block/on_off_block.gd" id="1_yu07a"]
@@ -26,6 +26,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rv0u"]
 size = Vector2(24, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chy3n"]
+
 [node name="OnOffBlock" type="StaticBody2D"]
 script = ExtResource("1_yu07a")
 
@@ -36,3 +38,8 @@ animation = &"In"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8rv0u")
+
+[node name="BoxStuckCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxStuckCheck"]
+shape = SubResource("RectangleShape2D_chy3n")

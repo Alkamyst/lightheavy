@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var Sprite = $AnimatedSprite2D
 @onready var Col = $CollisionShape2D
+@onready var BSC = $BoxStuckCheck
 var switch
 @export_enum("In", "Out") var Start_State: int
 
@@ -34,6 +35,12 @@ func blockIn():
 func blockOut():
 	Sprite.play("Out")
 	Col.disabled = false
+	var BSC_Overlap = BSC.get_overlapping_bodies()
+	
+	for i in BSC_Overlap:
+		if i.is_in_group("box") and "picked_up" in i:
+			if !i.picked_up:
+				i.global_position.y -= 4
 	
 func get_all_children(in_node, array := []):
 	array.push_back(in_node)

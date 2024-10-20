@@ -16,6 +16,7 @@ tile_map_data = PackedByteArray("AAAAAAYAAAAFAAIAAAAAAAcAAAAAAAMAAAAAAAUAAAAFAAI
 [node name="Dropper" parent="." instance=ExtResource("3_0k1io")]
 position = Vector2(119, 120)
 Type = 1
+Affect_Carrying = 1
 
 [node name="Dropper2" parent="." instance=ExtResource("3_0k1io")]
 position = Vector2(744, 216)
@@ -23,7 +24,7 @@ Affect_Carrying = 1
 
 [node name="ExitDoor" parent="." instance=ExtResource("4_jnejf")]
 position = Vector2(1033, 256)
-file_path = "res://Levels/heavy_intro.tscn"
+file_path = "res://Levels/level_5.tscn"
 
 [node name="Player" parent="." instance=ExtResource("5_5vnol")]
 position = Vector2(122, 552)

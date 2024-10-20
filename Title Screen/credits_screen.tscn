@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbf6iymdpd8k6"]
+
+[ext_resource type="Script" path="res://Title Screen/credits_screen.gd" id="1_0flwd"]
+[ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="2_wpi1o"]
+[ext_resource type="FontFile" uid="uid://stgdqatphmpe" path="res://Fonts/8bitoperatorplussc-regular.ttf" id="5_o42bl"]
+[ext_resource type="Texture2D" uid="uid://dc8mqm6gjbkvt" path="res://Sprites/White.png" id="9_sjfbk"]
+[ext_resource type="AudioStream" uid="uid://dcyrlcufywj8p" path="res://Sound/select.mp3" id="11_74mu0"]
+
+[node name="CreditsScreen" type="Node2D" groups=["level"]]
+script = ExtResource("1_0flwd")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+texture_filter = 1
+offset_left = 67.0
+offset_top = 66.0
+offset_right = 1080.0
+offset_bottom = 568.0
+theme_override_colors/background_color = Color(0.691357, 0.691357, 0.691357, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 8
+theme_override_constants/line_spacing = -13
+theme_override_fonts/font = ExtResource("5_o42bl")
+theme_override_font_sizes/font_size = 36
+text = "Credits
+
+Game
+ Logan Conrad
+
+Music
+ Logan Conrad, Andrew Ruoff
+
+Art
+ Logan Conrad, Rian
+
+
+												  Press X to return"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="BasicTileMapLayer" parent="." instance=ExtResource("2_wpi1o")]
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(593, 339)
+scale = Vector2(1462.5, 816.75)
+texture = ExtResource("9_sjfbk")
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(565, 428)
+stream = ExtResource("11_74mu0")

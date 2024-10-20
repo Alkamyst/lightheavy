@@ -1,17 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3hborp0lfasx"]
+[gd_scene load_steps=11 format=3 uid="uid://c3hborp0lfasx"]
 
 [ext_resource type="Script" path="res://Objects/Box/character_body_2d.gd" id="1_xo48m"]
 [ext_resource type="Texture2D" uid="uid://c30owltb05x2a" path="res://Sprites/Box/Box.png" id="2_p14u8"]
 [ext_resource type="AudioStream" uid="uid://b3x15k4yysduf" path="res://Sound/painted.mp3" id="3_h478t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hljyc"]
-size = Vector2(48, 48)
+size = Vector2(46, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4er12"]
-size = Vector2(49, 36)
+size = Vector2(48.5, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6k7h"]
 size = Vector2(53, 46.75)
+
+[sub_resource type="Animation" id="Animation_5sxkc"]
+resource_name = "default"
+
+[sub_resource type="Animation" id="Animation_gqb3v"]
+resource_name = "shake"
+length = 0.27
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ahc02"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_427qh"]
+_data = {
+"RESET": SubResource("Animation_ahc02"),
+"default": SubResource("Animation_5sxkc"),
+"shake": SubResource("Animation_gqb3v")
+}
 
 [node name="Box" type="CharacterBody2D" groups=["box"]]
 collision_layer = 17
@@ -28,7 +69,7 @@ texture = ExtResource("2_p14u8")
 shape = SubResource("RectangleShape2D_hljyc")
 
 [node name="CollisionShapePickedUp" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -6)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_4er12")
 disabled = true
 debug_color = Color(0, 0.628335, 0.493356, 0.42)
@@ -46,3 +87,9 @@ debug_color = Color(0.987138, 0, 0.316235, 0.42)
 rotation = -0.00136097
 scale = Vector2(2, 2)
 stream = ExtResource("3_h478t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_427qh")
+}
+autoplay = "default"
