@@ -48,7 +48,10 @@ func _ready() -> void:
 	Music.play_music_level()
 	if Has_Gun:
 		$Gun.visible = true
-
+		
+	InputMap.action_set_deadzone("left", 0.4)
+	InputMap.action_set_deadzone("right", 0.4)
+		
 func _physics_process(delta: float) -> void:
 	
 	if velocity.x < 0:
@@ -90,6 +93,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
+	if (direction > .1):
+		direction = 1
+	elif (direction < -.1):
+		direction = -1
 	if is_on_floor():
 		if (velocity.x < 0 and direction > 0) or (velocity.x > 0 and direction < 0): # Turning
 			velocity.x *= .5

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://i186yts4h75d"]
+
+[ext_resource type="Script" path="res://Objects/Controls/Movement/controls_movement.gd" id="1_ekqbg"]
+[ext_resource type="Texture2D" uid="uid://vmuiprk3huxu" path="res://Sprites/Keys/Buttons2.png" id="2_w17vf"]
+[ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="4_qkorc"]
+
+[node name="Controls_Pickup" type="Node2D"]
+script = ExtResource("1_ekqbg")
+
+[node name="Gamepad" type="Node2D" parent="."]
+visible = false
+position = Vector2(21, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Gamepad"]
+position = Vector2(-21, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_w17vf")
+
+[node name="Keyboard" type="Node2D" parent="."]
+position = Vector2(-24, -24)
+
+[node name="BasicTileMapLayer" parent="Keyboard" instance=ExtResource("4_qkorc")]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

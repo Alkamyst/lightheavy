@@ -1,47 +1,49 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgr6vpop46inl"]
+[gd_scene load_steps=22 format=3 uid="uid://dgr6vpop46inl"]
 
 [ext_resource type="Script" path="res://Title Screen/title_screen.gd" id="1_747ny"]
 [ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="2_v8b7d"]
 [ext_resource type="Texture2D" uid="uid://b33r1pckecylp" path="res://Sprites/Title Screen/Title Screen.png" id="3_q775p"]
 [ext_resource type="Texture2D" uid="uid://dc8mqm6gjbkvt" path="res://Sprites/White.png" id="4_gqm1v"]
-[ext_resource type="Texture2D" uid="uid://dns3ncjo7drkj" path="res://Sprites/Title Screen/TextBack.png" id="5_hmoxa"]
+[ext_resource type="Texture2D" uid="uid://cc6f61cjpsenx" path="res://Sprites/Title Screen/StartBack.png" id="4_s0ik7"]
+[ext_resource type="Texture2D" uid="uid://bfmpexvrt47oq" path="res://Sprites/Title Screen/CreditsBack.png" id="6_74j0x"]
 [ext_resource type="Texture2D" uid="uid://dw8fnyj36ti11" path="res://Sprites/Title Screen/Start.png" id="6_xfx0l"]
 [ext_resource type="Texture2D" uid="uid://0xv0yywxepu1" path="res://Sprites/Title Screen/Credits.png" id="6_xyh0a"]
 [ext_resource type="Texture2D" uid="uid://b3pmfg57jh2s3" path="res://Sprites/Title Screen/Quit.png" id="7_76xnn"]
 [ext_resource type="Texture2D" uid="uid://lh6j2cms4igk" path="res://Sprites/Title Screen/Cursor.png" id="8_aw0c6"]
+[ext_resource type="Texture2D" uid="uid://db1f25n1djqws" path="res://Sprites/Title Screen/QuitBack.png" id="8_e3l5f"]
 [ext_resource type="AudioStream" uid="uid://c5rmxqmlc4mfu" path="res://Sound/click.mp3" id="10_5pvg1"]
 [ext_resource type="AudioStream" uid="uid://dcyrlcufywj8p" path="res://Sound/select.mp3" id="11_uehf0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4hoq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyjat"]
 atlas = ExtResource("3_q775p")
-region = Rect2(0, 0, 200, 70)
+region = Rect2(0, 0, 202, 78)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cfjix"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1byx"]
 atlas = ExtResource("3_q775p")
-region = Rect2(200, 0, 200, 70)
+region = Rect2(202, 0, 202, 78)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yis1v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxf8o"]
 atlas = ExtResource("3_q775p")
-region = Rect2(400, 0, 200, 70)
+region = Rect2(404, 0, 202, 78)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mqfjf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6jek"]
 atlas = ExtResource("3_q775p")
-region = Rect2(600, 0, 200, 70)
+region = Rect2(606, 0, 202, 78)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bkpt5"]
 animations = [{
 "frames": [{
 "duration": 50.0,
-"texture": SubResource("AtlasTexture_r4hoq")
+"texture": SubResource("AtlasTexture_yyjat")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cfjix")
+"texture": SubResource("AtlasTexture_r1byx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yis1v")
+"texture": SubResource("AtlasTexture_rxf8o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mqfjf")
+"texture": SubResource("AtlasTexture_k6jek")
 }],
 "loop": true,
 "name": &"default",
@@ -92,34 +94,34 @@ x_position = -200
 [node name="BasicTileMapLayer" parent="." instance=ExtResource("2_v8b7d")]
 
 [node name="Title" type="AnimatedSprite2D" parent="."]
-position = Vector2(576, 169)
+position = Vector2(576, 183)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bkpt5")
 autoplay = "default"
 frame_progress = 0.210759
 
 [node name="Buttons" type="Node2D" parent="."]
-position = Vector2(576, 426)
+position = Vector2(576, 436)
 
 [node name="StartBack" type="Sprite2D" parent="Buttons"]
-position = Vector2(0, -90)
+position = Vector2(0, -80)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_hmoxa")
+texture = ExtResource("4_s0ik7")
 
 [node name="Start" type="Sprite2D" parent="Buttons/StartBack"]
 texture = ExtResource("6_xfx0l")
 
 [node name="CreditsBack" type="Sprite2D" parent="Buttons"]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_hmoxa")
+texture = ExtResource("6_74j0x")
 
 [node name="Credits" type="Sprite2D" parent="Buttons/CreditsBack"]
 texture = ExtResource("6_xyh0a")
 
 [node name="QuitBack" type="Sprite2D" parent="Buttons"]
-position = Vector2(0, 90)
+position = Vector2(0, 80)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_hmoxa")
+texture = ExtResource("8_e3l5f")
 
 [node name="Quit" type="Sprite2D" parent="Buttons/QuitBack"]
 texture = ExtResource("7_76xnn")

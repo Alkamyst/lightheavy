@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccp0jptnno32m"]
+
+[ext_resource type="Script" path="res://control_mode.gd" id="1_63bjl"]
+
+[node name="Control_Mode" type="Node"]
+script = ExtResource("1_63bjl")

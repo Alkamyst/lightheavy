@@ -2,9 +2,12 @@ extends Node2D
 
 @onready var black = $Black
 @onready var cursor = $Buttons/Cursor
-@onready var start = $Buttons/StartBack
-@onready var credits = $Buttons/CreditsBack
-@onready var quit = $Buttons/QuitBack
+@onready var start = $Buttons/StartBack/Start
+@onready var credits = $Buttons/CreditsBack/Credits
+@onready var quit = $Buttons/QuitBack/Quit
+@onready var startBack = $Buttons/StartBack
+@onready var creditsBack = $Buttons/CreditsBack
+@onready var quitBack = $Buttons/QuitBack
 @onready var animation_player: AnimationPlayer = $Buttons/Cursor/AnimationPlayer
 @export var x_position: int
 
@@ -16,7 +19,7 @@ var button_selected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Music.stop_music()
+	Music.play_title_music()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,9 +27,9 @@ func _process(delta: float) -> void:
 	cursor.position.x = x_position
 	black.modulate.a *= .99
 	if button_selected == 0:
-		cursor.position.y = start.position.y
-		start.texture = load("res://Sprites/Title Screen/TextBackSelected.png")
-		credits.texture = load("res://Sprites/Title Screen/TextBack.png")
+		cursor.position.y = startBack.position.y
+		start.texture = load("res://Sprites/Title Screen/StartSelected.png")
+		credits.texture = load("res://Sprites/Title Screen/Credits.png")
 		if Input.is_action_just_pressed("down"):
 			ClickSound.play()
 			animation_player.stop()
@@ -36,10 +39,10 @@ func _process(delta: float) -> void:
 			start_game()
 			
 	elif button_selected == 1:
-		cursor.position.y = credits.position.y
-		start.texture = load("res://Sprites/Title Screen/TextBack.png")
-		quit.texture = load("res://Sprites/Title Screen/TextBack.png")
-		credits.texture = load("res://Sprites/Title Screen/TextBackSelected.png")
+		cursor.position.y = creditsBack.position.y
+		start.texture = load("res://Sprites/Title Screen/Start.png")
+		quit.texture = load("res://Sprites/Title Screen/Quit.png")
+		credits.texture = load("res://Sprites/Title Screen/CreditsSelected.png")
 		if Input.is_action_just_pressed("up"):
 			ClickSound.play()
 			animation_player.stop()
@@ -54,9 +57,9 @@ func _process(delta: float) -> void:
 			credits_transition()
 			
 	elif button_selected == 2:
-		cursor.position.y = quit.position.y
-		credits.texture = load("res://Sprites/Title Screen/TextBack.png")
-		quit.texture = load("res://Sprites/Title Screen/TextBackSelected.png")
+		cursor.position.y = quitBack.position.y
+		credits.texture = load("res://Sprites/Title Screen/Credits.png")
+		quit.texture = load("res://Sprites/Title Screen/QuitSelected.png")
 		if Input.is_action_just_pressed("up"):
 			ClickSound.play()
 			animation_player.stop()

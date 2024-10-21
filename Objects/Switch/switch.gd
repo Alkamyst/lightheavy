@@ -1,17 +1,19 @@
-extends StaticBody2D
+extends Node2D
 
-@onready var WeightDetection = $WeightDetection
-@onready var SnapPoint = $SnapPoint
+@onready var WeightDetection = $Collision/WeightDetection
+@onready var SnapPoint = $Collision/SnapPoint
+@onready var Col = $Collision
+@onready var Sprite = $Sprite2D
 var turnOn: bool = false
 
 var initial_scale
 
-@onready var PressSound: AudioStreamPlayer2D = $PressSound
+@onready var PressSound: AudioStreamPlayer2D = $Collision/PressSound
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	initial_scale = get_scale()
+	initial_scale = Col.get_scale()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,10 +36,13 @@ func check_overlap():
 			turnOn = false
 	
 func pressed():
-	set_scale(Vector2(initial_scale.x, initial_scale.y / 2))
+	Col.set_scale(Vector2(initial_scale.x, initial_scale.y / 2))
+	Sprite.play("On")
+	
 	
 func unpressed():
-	set_scale(Vector2(initial_scale.x, initial_scale.y))
+	Col.set_scale(Vector2(initial_scale.x, initial_scale.y))
+	Sprite.play("Off")
 
 
 func _on_weight_detection_body_entered(body: Node2D) -> void:
