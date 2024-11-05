@@ -1,6 +1,6 @@
 extends Node2D
 
-var white = "#555555"
+var white = "#777777"
 var red = "#FF0000"
 var blue = "#0000FF"
 

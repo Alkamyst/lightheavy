@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	spawn_particle(body)
+	spawn_particle()
 	queue_free()
 	if "carrying" in body:
 		if body.carrying && affect_carrying:
@@ -60,22 +60,14 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 					body.PaintSound.play()
 				body.gravity = Globals.gravity_medium
 
-func spawn_particle(body: Node2D):
+func spawn_particle():
 	const PARTICLE = preload("res://Objects/Paint/Particle/paint_splash_particle.tscn")
 	var new_particle = PARTICLE.instantiate()
+	new_particle.global_position = RigidBody.global_position
+	new_particle.global_position.y += 4
 	new_particle.material.set_shader_parameter("color", Color(color_string))
 	new_particle.emitting = true
-	
 	get_tree().current_scene.add_child(new_particle)
-	#var parent = get_parent()
-	#if parent != null:
-	#	parent.add_child(new_particle)
-		
-	new_particle.global_position = RigidBody.global_position
-	# Snaps particle to tilemap if the paint is colliding with one
-	if body.is_in_group("tilemap"):
-		new_particle.global_position = new_particle.global_position.snapped(Vector2(24,24))
-	
 
 func _on_timer_timeout() -> void:
 	# Enable collision after leaving dropper

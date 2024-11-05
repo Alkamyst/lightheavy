@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3hborp0lfasx"]
+[gd_scene load_steps=11 format=3 uid="uid://c3hborp0lfasx"]
 
 [ext_resource type="Script" path="res://Objects/Box/character_body_2d.gd" id="1_xo48m"]
 [ext_resource type="Texture2D" uid="uid://c30owltb05x2a" path="res://Sprites/Box/Box.png" id="2_p14u8"]
@@ -12,9 +12,6 @@ size = Vector2(48.5, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6k7h"]
 size = Vector2(53, 46.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcne5"]
-size = Vector2(46, 2)
 
 [sub_resource type="Animation" id="Animation_ahc02"]
 length = 0.001
@@ -57,10 +54,9 @@ _data = {
 "shake": SubResource("Animation_gqb3v")
 }
 
-[node name="Box" type="CharacterBody2D" groups=["box", "ground"]]
+[node name="Box" type="CharacterBody2D" groups=["box"]]
 collision_layer = 17
 collision_mask = 17
-platform_on_leave = 2
 script = ExtResource("1_xo48m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -86,13 +82,6 @@ visible = false
 position = Vector2(0, 0.375)
 shape = SubResource("RectangleShape2D_h6k7h")
 debug_color = Color(0.987138, 0, 0.316235, 0.42)
-
-[node name="PlayerMonitorArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMonitorArea"]
-position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_dcne5")
-debug_color = Color(0.291514, 0.629643, 5.77569e-07, 0.42)
 
 [node name="PaintSound" type="AudioStreamPlayer2D" parent="."]
 rotation = -0.00136097

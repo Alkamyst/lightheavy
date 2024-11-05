@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxk4gbmxmgm6f"]
-
-[ext_resource type="PackedScene" uid="uid://dao3s8l6a4yme" path="res://Objects/Switch/switch.tscn" id="1_sjju5"]
-
-[node name="switch_tile" type="Node2D"]
-position = Vector2(0, 24)
-
-[node name="Switch" parent="." instance=ExtResource("1_sjju5")]

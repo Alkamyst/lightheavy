@@ -16,7 +16,7 @@ func _ready() -> void:
 	else:
 		AnimPlayer.play("FadeIn")
 		#set_scale(Vector2(-1152, 1152))
-		global_position = Vector2(1152, 0)
+		#global_position = Vector2(1152, 0)
 	#tempScale = get_scale()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

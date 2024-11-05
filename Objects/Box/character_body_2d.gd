@@ -11,7 +11,6 @@ var gravity
 @onready var Sprite = $Sprite2D
 @onready var Collision = $CollisionShape2D
 @onready var CollisionPickedUp = $CollisionShapePickedUp
-@onready var PlayerMonitorArea = $PlayerMonitorArea
 var picked_up: bool = false
 @onready var PaintSound: AudioStreamPlayer2D = $PaintSound
 @onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
@@ -36,12 +35,7 @@ func _physics_process(delta: float) -> void:
 	if not picked_up:
 		# Add the gravity.
 		if not is_on_floor():
-			velocity.y += gravity * delta
-		else:
-			velocity.x = 0
-			
-		if not is_on_ground():
-			bounce_away_from_player()
+				velocity.y += gravity * delta
 				
 		move_and_slide()
 			
@@ -51,31 +45,6 @@ func _physics_process(delta: float) -> void:
 		Sprite.texture = load("res://Sprites/Box/BoxRed.png")
 	else:
 		Sprite.texture = load("res://Sprites/Box/Box.png")
-
-func is_on_ground():
-	var playerMonitorBodies = PlayerMonitorArea.get_overlapping_bodies()
-
-	for body in playerMonitorBodies:
-		if body.is_in_group("ground"):
-			return true
-	
-	return false
-
-func bounce_away_from_player():
-	var playerMonitorBodies = PlayerMonitorArea.get_overlapping_bodies()
-
-	for body in playerMonitorBodies:
-		if body.is_in_group("player"):
-			velocity.y = -100.0
-			if global_position.x > body.global_position.x:
-				velocity.x = 200
-			else:
-				velocity.x = -200
-		
-func change_col_layers(isPickedUp: bool):
-	set_collision_layer_value(1, !isPickedUp)
-	set_collision_layer_value(5, !isPickedUp)
-	set_collision_layer_value(8, isPickedUp)
 	
 func pick_up(player):
 	reparent(player)
@@ -84,16 +53,15 @@ func pick_up(player):
 	Collision.disabled = true
 	CollisionPickedUp.disabled = false
 	
-	change_col_layers(true)
-	
-func drop(player: CharacterBody2D, faceLeft):
+func drop(player, faceLeft):
 	var root = get_tree().get_root()
 	
 	# Important! Make sure the level scene has group "level"
 	# This makes the box not stay between levels
-	reparent(get_tree().current_scene)
-	get_tree().current_scene.move_child(self, player.get_index())
-
+	for element in get_all_children(root):
+		if element.is_in_group("level"):
+			reparent(element)
+	
 	if faceLeft:
 		global_position = Vector2(player.global_position.x - 48, player.global_position.y)
 	else:
@@ -101,5 +69,10 @@ func drop(player: CharacterBody2D, faceLeft):
 	picked_up = false
 	Collision.disabled = false
 	CollisionPickedUp.disabled = true
+
 	
-	change_col_layers(false)
+func get_all_children(in_node, array := []):
+	array.push_back(in_node)
+	for child in in_node.get_children():
+		array = get_all_children(child, array)
+	return array

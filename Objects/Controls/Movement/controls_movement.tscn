@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://km2ftn2m062l" path="res://Sprites/Keys/DPad.png" id="1_5oblx"]
 [ext_resource type="Script" path="res://Objects/Controls/Movement/controls_movement.gd" id="1_daxbb"]
+[ext_resource type="PackedScene" uid="uid://b5hi272oc21y6" path="res://Tilesets/basic_tilemap.tscn" id="1_m2fd0"]
 [ext_resource type="Texture2D" uid="uid://c6qhf823dqg5k" path="res://Sprites/Keys/Buttons.png" id="2_r3pwx"]
-[ext_resource type="PackedScene" uid="uid://cnodlsh4xncka" path="res://Tilesets/keyboard_tilemap.tscn" id="4_p6066"]
 
 [node name="Controls_Movement" type="Node2D"]
 script = ExtResource("1_daxbb")
@@ -24,6 +24,5 @@ texture = ExtResource("2_r3pwx")
 
 [node name="Keyboard" type="Node2D" parent="."]
 
-[node name="KeyboardTileMapLayer" parent="Keyboard" instance=ExtResource("4_p6066")]
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 1, 0, 255, 255, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0, 0, 254, 255, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0)
+[node name="BasicTileMapLayer" parent="Keyboard" instance=ExtResource("1_m2fd0")]
+tile_map_data = PackedByteArray(0, 0, 2, 0, 0, 0, 1, 0, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 0, 0, 0, 1, 0, 255, 255, 1, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0, 1, 0, 0, 0, 254, 255, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0)

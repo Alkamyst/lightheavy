@@ -3,15 +3,21 @@ extends StaticBody2D
 @onready var Sprite = $AnimatedSprite2D
 @onready var Col = $CollisionShape2D
 @onready var BSC = $BoxStuckCheck
+var switch
 @export_enum("In", "Out") var Start_State: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	var root = get_tree().get_root()
+	
+	for element in get_all_children(root):
+		if element.is_in_group("switch"):
+			switch = element
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if isBlocksOn():
+	if switch.turnOn:
 		if Start_State == 0:
 			blockOut()
 		else: 
@@ -21,23 +27,6 @@ func _process(delta: float) -> void:
 			blockIn()
 		else: 
 			blockOut()
-			
-func isBlocksOn():
-	if totalSwitchesOn() % 2 == 0:
-		return true
-	else:
-		return false
-
-func totalSwitchesOn():
-	var root = get_tree().get_root()
-	var numSwitchesOn = 0
-	
-	for element in get_all_children(root):
-		if element.is_in_group("switch") and "turnOn" in element:
-			if element.turnOn:
-				numSwitchesOn += 1
-				
-	return numSwitchesOn
 
 func blockIn():
 	Sprite.play("In")

@@ -3,9 +3,7 @@ extends Node2D
 @export_enum("Normal", "Light", "Heavy") var Type: int
 @export_enum("Yes", "No") var Affect_Carrying: int
 
-# 0.225
-
-var white = "#555555"
+var white = "#777777"
 var red = "#FF0000"
 var blue = "#0000FF"
 
