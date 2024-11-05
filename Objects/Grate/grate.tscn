@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqn5a"]
 size = Vector2(24, 24)
 
-[node name="Grate" type="StaticBody2D"]
+[node name="Grate" type="StaticBody2D" groups=["ground"]]
 collision_layer = 16
 collision_mask = 16
 

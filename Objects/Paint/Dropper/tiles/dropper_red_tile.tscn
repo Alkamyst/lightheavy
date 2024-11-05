@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://faflfwilftqs"]
+
+[ext_resource type="PackedScene" uid="uid://cogaj6nc8i0qo" path="res://Objects/Paint/Dropper/dropper.tscn" id="1_ffs7k"]
+
+[node name="dropper_red_tile" type="Node2D"]
+
+[node name="Dropper" parent="." instance=ExtResource("1_ffs7k")]
+Type = 2
+Affect_Carrying = 1

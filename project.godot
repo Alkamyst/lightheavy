@@ -36,6 +36,9 @@ goal=""
 box=""
 level=""
 switch=""
+player=""
+tilemap=""
+ground=""
 
 [input]
 

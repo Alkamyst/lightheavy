@@ -28,7 +28,7 @@ size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chy3n"]
 
-[node name="OnOffBlock" type="StaticBody2D"]
+[node name="OnOffBlock" type="StaticBody2D" groups=["tilemap"]]
 script = ExtResource("1_yu07a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

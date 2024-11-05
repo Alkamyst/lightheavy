@@ -40,7 +40,7 @@ b = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dabiu"]
 size = Vector2(24, 12)
 
-[node name="Switch" type="Node2D" groups=["switch"]]
+[node name="Switch" type="Node2D" groups=["ground", "switch"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_e76lw")
 
